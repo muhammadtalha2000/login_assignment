@@ -1,0 +1,59 @@
+h1,h2,h3 {
+    color: orangered !important;
+    font-weight:  bolder !important;
+}
+
+label {
+    color: orangered !important;
+}
+
+button {
+    background-color: orangered !important;
+    color: white !important;
+    font-size: 18px !important;
+}
+
+a {
+    color: white !important;
+    text-decoration: none !important;
+}
+
+.col-4 {
+    background-color:black !important;
+    color: white !important;
+    margin-left: 100px;
+    height: 350px;  
+}
+
+.avatar {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+
+  li {
+      border: 2px solid navy;
+      width: 400px;
+  }
+
+  li:hover {
+      font-size: 26px;
+      color: navy;
+      background-color: white;
+  }
+
+  .col-3 {
+      margin-top: 30px;
+  }
+
+  p {
+      color: orangered !important;
+      font-size: 20px;
+      margin-left: -8px;
+      
+  }
+
+  .card {
+      margin-left: 100px;
+  }
