@@ -21,8 +21,8 @@ a {
 .col-4 {
     background-color:black !important;
     color: white !important;
-    margin-left: 100px;
-    height: 350px;  
+    height: 350px; 
+    width: 200px; 
 }
 
 .avatar {
@@ -30,22 +30,25 @@ a {
     width: 50px;
     height: 50px;
     border-radius: 50%;
+    margin-left: 200px;
   }
 
   li {
-      border: 2px solid navy;
-      width: 400px;
+      border: 2px solid white;
+      border-right: none;
+      width: 500px;
+    margin-top: 50px;
   }
 
   li:hover {
       font-size: 26px;
-      color: navy;
+      color:orangered;
       background-color: white;
   }
 
-  .col-3 {
+  /* .col-3 {
       margin-top: 30px;
-  }
+  } */
 
   p {
       color: orangered !important;
@@ -56,4 +59,15 @@ a {
 
   .card {
       margin-left: 100px;
+  }
+
+  .details{
+      width: 500px;
+    background-color: orangered !important;
+    height: 90vh;
+    color: white !important;
+  }
+
+  #post {
+      margin-top: 30px;
   }
