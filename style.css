@@ -38,6 +38,7 @@ a {
       border-right: none;
       width: 500px;
     margin-top: 50px;
+    list-style-type: none;
   }
 
   li:hover {
@@ -71,3 +72,16 @@ a {
   #post {
       margin-top: 30px;
   }
+ 
+@media screen and
+ (max-width : 700px){
+    #heading,#heading2,#heading3 {
+        font-size : 20px
+    }
+    #list1,#list2,#list3,#list4,#list5 {
+        width : 200px,
+    }
+    .details {
+        width: 250px;
+    }
+}

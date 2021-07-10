@@ -1,19 +1,21 @@
-function onSignup() {
+onSignup = () => {
     // get input values
     var email = document.getElementById("email");
     var password = document.getElementById("password");
     var name = document.getElementById("name");
-    var address =  document.getElementById("address");
+    var address = document.getElementById("address");
     var contact_no = document.getElementById("contact_no.")
     var message = document.getElementById("message");
 
+   //user object
     var user = {
         email: email.value,
         password: password.value,
-        name : name.value,
-        address : address.value,
-        contact_no : contact_no.value
+        name: name.value,
+        address: address.value,
+        contact_no: contact_no.value
     }
+    
 
     var users = JSON.parse(localStorage.getItem("users")) || [];
     // get indx
@@ -21,21 +23,13 @@ function onSignup() {
         return val.email.toLowerCase() === user.email.toLowerCase()
     });
 
-    if (userIdx === -1) {
-        // this user is not exist
-        users.push(user);
-        // store in storage
-        message.innerText = "Account created successfully"
-        localStorage.setItem("users", JSON.stringify(users));
-        // redirect to login page
-        location.href = "login.html";
-    } else {
-        message.innerHTML = user.email + " use in another account";
-    }
-    // clear state
+    //conditions for signup
+    (userIdx === -1) ? (users.push(user),localStorage.setItem("users", JSON.stringify(users)), message.innerText = "Account created successfully") : message.innerText = `${user.email} use in another account`
+  
     setTimeout(() => {
+        location.href = "login.html"
         message.innerHTML = "";
-    }, 2000);
+    }, 5000);
 
 
     // console.log(user);
@@ -43,7 +37,7 @@ function onSignup() {
 
 }
 
-function onLogin() {
+onLogin = () => {
     // get input values
     var email = document.getElementById("email");
     var password = document.getElementById("password");
@@ -60,21 +54,17 @@ function onLogin() {
         return val.email.toLowerCase() === user.email.toLowerCase() && val.password === user.password;
     });
 
-    if (currentUser) {
-        message.innerText = "Login Successfully"
-        localStorage.setItem("user", JSON.stringify(currentUser));
-        // user login
-        location.href = "index.html";
-    } else {
-        message.innerHTML = "Invalid credentials";
-    }
-    // clear state
+
+
+    (currentUser) ? (users.push(user),localStorage.setItem("user",JSON.stringify(currentUser),message.innerText = "Login Successfully") ) : message.innerText = "Login Failed"
+    
     setTimeout(() => {
-        message.innerHTML = "";
-    }, 2000);
+    message.innerText = "";
+    location.href = "index.html"
+    }, 5000);
 }
 
-function onLogout() {
+onLogout = () => {
     var message = document.getElementById("message");
     localStorage.removeItem("user");
     // clear state
@@ -83,14 +73,14 @@ function onLogout() {
     }, 5000);
 }
 
-function getCurrentUser() {
+getCurrentUser = () => {
     // var detial = document.getElementById("detial");
     var user = JSON.parse(localStorage.getItem("user"));
     // detial.innerHTML = "Logged in as " + " " + user.email.split("@")[0];
     var list1 = document.getElementById("list1");
-    list1.innerText = "Email : "  + user.email;
+    list1.innerText = "Email : " + user.email;
     var list2 = document.getElementById("list2")
-    list2.innerText = "Name :"  + " " + user.name;
+    list2.innerText = "Name :" + " " + user.name;
     var list3 = document.getElementById("list3")
     list3.innerText = "Address : " + user.address
     var list4 = document.getElementById("list4")
@@ -99,13 +89,42 @@ function getCurrentUser() {
 
 }
 
-function additem(){
+// function additem(){
+//     var title = document.getElementById("title");
+//     var description = document.getElementById("description");
+
+//     var tilte_head = document.getElementById("tilte_head");
+//     var description_head = document.getElementById("description_head");
+
+//     tilte_head.innerText = "Title : " + title.value;
+//     description_head.innerText ="Description : " +  description.value;
+// }
+
+
+
+addCard = () => {
+
     var title = document.getElementById("title");
     var description = document.getElementById("description");
+    var image = "https:image.shutterstock.com/image-vector/review-us-user-rating-concept-260nw-1362638027.jpg"
 
-    var tilte_head = document.getElementById("tilte_head");
-    var description_head = document.getElementById("description_head");
+    var htmlText = `<div class="card" style="width: 18rem;">
+            <img src=${image} alt="... ">
+            <div class="card-body" style = "color : black">
+              <h2 class="card-title">${title.value}</h2>
+              <p class="card-text">${description.value}</p>
+            </div>
+          </div>`
 
-    tilte_head.innerText = "Title : " + title.value;
-    description_head.innerText ="Description : " +  description.value;
+    var postCard = document.getElementById('cardhead');
+    var li = document.createElement('li');
+    var liText = document.createElement('div');
+    liText.innerHTML = htmlText
+    li.appendChild(liText)
+    postCard.appendChild(li);
+
+    title.value = "";
+    description.value = "";
+
+    cardhead.innerHTML = card
 }
