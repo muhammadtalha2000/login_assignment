@@ -1,3 +1,7 @@
+const Base_url = "http://localhost:8000";
+
+
+
 onSignup = () => {
     // get input values
     var email = document.getElementById("email");
@@ -7,7 +11,7 @@ onSignup = () => {
     var contact_no = document.getElementById("contact_no.")
     var message = document.getElementById("message");
 
-   //user object
+    //user object
     var user = {
         email: email.value,
         password: password.value,
@@ -15,7 +19,7 @@ onSignup = () => {
         address: address.value,
         contact_no: contact_no.value
     }
-    
+
 
     var users = JSON.parse(localStorage.getItem("users")) || [];
     // get indx
@@ -24,8 +28,8 @@ onSignup = () => {
     });
 
     //conditions for signup
-    (userIdx === -1) ? (users.push(user),localStorage.setItem("users", JSON.stringify(users)), message.innerText = "Account created successfully") : message.innerText = `${user.email} use in another account`
-  
+    (userIdx === -1) ? (users.push(user), localStorage.setItem("users", JSON.stringify(users)), message.innerText = "Account created successfully") : message.innerText = `${user.email} use in another account`
+
     setTimeout(() => {
         location.href = "login.html"
         message.innerHTML = "";
@@ -56,11 +60,11 @@ onLogin = () => {
 
 
 
-    (currentUser) ? (users.push(user),localStorage.setItem("user",JSON.stringify(currentUser),message.innerText = "Login Successfully") ) : message.innerText = "Login Failed"
-    
+    (currentUser) ? (users.push(user), localStorage.setItem("user", JSON.stringify(currentUser), message.innerText = "Login Successfully")) : message.innerText = "Login Failed"
+
     setTimeout(() => {
-    message.innerText = "";
-    location.href = "index.html"
+        message.innerText = "";
+        location.href = "index.html"
     }, 5000);
 }
 
@@ -106,6 +110,14 @@ addCard = () => {
 
     var title = document.getElementById("title");
     var description = document.getElementById("description");
+
+    const obj = {
+        title: title.value,
+        description: description.value
+    }
+
+
+
     var image = "https:image.shutterstock.com/image-vector/review-us-user-rating-concept-260nw-1362638027.jpg"
 
     var htmlText = `<div class="card" style="width: 18rem;">
@@ -115,6 +127,26 @@ addCard = () => {
               <p class="card-text">${description.value}</p>
             </div>
           </div>`
+
+    axios.post(`${Base_url}/create`, obj)
+        .then((response) => {
+            console.log("response", response);
+        }).catch((error) => {
+            console.log("error", error);
+        })
+
+    const getPost = () => {
+        // post(url, headers)
+        axios.get(`${Base_url}/posts`)
+            .then((response) => {
+                console.log(response.data);
+            }).catch((error) => {
+                console.log(error);
+            })
+    }
+
+    getPost();
+
 
     var postCard = document.getElementById('cardhead');
     var li = document.createElement('li');
